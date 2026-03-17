@@ -1,27 +1,24 @@
 ![CR-5](https://github.com/user-attachments/assets/e212d619-61a8-4e74-8b15-283b374c9d3f)
 
-## 🥁 CarnaCode 2026 - Desafio 05 - Singleton
+## 🥁 CarnaCode 2026 - Challenge 05 - Singleton
 
-Oi, eu sou o [seu nome aqui] e este é o espaço onde compartilho minha jornada de aprendizado durante o desafio **CarnaCode 2026**, realizado pelo [balta.io](https://balta.io). 👻
+Hi, I am Felipe Parizzi Galli, and this is the space where I share my learning journey during the **CarnaCode 2026** challenge, hosted by [balta.io](https://balta.io). 👻
 
-Aqui você vai encontrar projetos, exercícios e códigos que estou desenvolvendo durante o desafio. O objetivo é colocar a mão na massa, testar ideias e registrar minha evolução no mundo da tecnologia.
+Here you will find projects, exercises, and code that I am building throughout the challenge. The goal is to get hands-on, test ideas, and track my growth in tech.
 
-### Sobre este desafio
-No desafio **Singleton** eu tive que resolver um problema real implementando o **Design Pattern** em questão.
-Neste processo eu aprendi:
-* ✅ Boas Práticas de Software
-* ✅ Código Limpo
+### About this challenge
+In the **Singleton** challenge, I had to solve a real-world problem by implementing the corresponding **Design Pattern**.
+During this process, I learned:
+* ✅ Software Best Practices
+* ✅ Clean Code
 * ✅ SOLID
-* ✅ Design Patterns (Padrões de Projeto)
+* ✅ Design Patterns
 
-## Problema
-Uma aplicação precisa carregar configurações de banco de dados, APIs e cache uma única vez e compartilhar entre todos os componentes. O código atual permite múltiplas instâncias, causando inconsistências e desperdício de recursos.
+## Problem
+An application needs to load database, API, and cache settings only once and share them across all components. The current code allows multiple instances, causing inconsistencies and wasting resources.
 
-## Sobre o CarnaCode 2026
-O desafio **CarnaCode 2026** consiste em implementar todos os 23 padrões de projeto (Design Patterns) em cenários reais. Durante os 23 desafios desta jornada, os participantes são submetidos ao aprendizado e prática na idetinficação de códigos não escaláveis e na solução de problemas utilizando padrões de mercado.
+## About CarnaCode 2026
+The **CarnaCode 2026** challenge consists of implementing all 23 design patterns in real-world scenarios. Throughout the 23 challenges in this journey, participants practice identifying non-scalable code and solving problems using industry-standard patterns.
 
-### eBook - Fundamentos dos Design Patterns
-Minha principal fonte de conhecimento durante o desafio foi o eBook gratuito [Fundamentos dos Design Patterns](https://lp.balta.io/ebook-fundamentos-design-patterns).
-
-### Veja meu progresso no desafio
-[Incluir link para o repositório central]
+### eBook - Design Patterns Fundamentals
+My main source of knowledge during this challenge was the free eBook [Design Patterns Fundamentals](https://lp.balta.io/ebook-fundamentos-design-patterns).
