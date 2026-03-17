@@ -22,3 +22,11 @@ The **CarnaCode 2026** challenge consists of implementing all 23 design patterns
 
 ### eBook - Design Patterns Fundamentals
 My main source of knowledge during this challenge was the free eBook [Design Patterns Fundamentals](https://lp.balta.io/ebook-fundamentos-design-patterns).
+
+## What was implemented to apply Singleton
+- The `ConfigurationManager` constructor was made `private` to prevent direct instantiation from outside the class.
+- A static field (`_instance`) was added to hold the single shared instance.
+- A static lock object (`_lock`) plus double-check locking was implemented in `Instance` to ensure thread-safe lazy initialization.
+- Configuration loading was centralized in `LoadSettings()` and executed only once, when the singleton is first created.
+- Application services (`DatabaseService`, `ApiService`, `CacheService`, and `LoggingService`) now access configuration through `ConfigurationManager.Instance`, ensuring all of them use the same shared state.
+- Runtime updates (for example, `UpdateSetting("LogLevel", "Debug")`) affect the same singleton instance used by all components.
