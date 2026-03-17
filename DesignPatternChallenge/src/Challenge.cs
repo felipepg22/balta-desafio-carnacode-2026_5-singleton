@@ -5,68 +5,13 @@
 
 using System;
 using System.Collections.Generic;
+using DesignPatternChallenge.src.Managers;
 
 namespace DesignPatternChallenge
 {
     // Contexto: Sistema que precisa de configurações centralizadas e consistentes
     // As configurações são carregadas de arquivos, variáveis de ambiente e banco de dados
     
-    public class ConfigurationManager
-    {
-        private Dictionary<string, string> _settings;
-        private bool _isLoaded;
-
-        public ConfigurationManager()
-        {
-            _settings = new Dictionary<string, string>();
-            _isLoaded = false;
-            Console.WriteLine("⚠️ Nova instância de ConfigurationManager criada!");
-        }
-
-        public void LoadConfigurations()
-        {
-            if (_isLoaded)
-            {
-                Console.WriteLine("Configurações já carregadas.");
-                return;
-            }
-
-            Console.WriteLine("🔄 Carregando configurações...");
-            
-            // Simulando operação custosa de carregamento
-            System.Threading.Thread.Sleep(200);
-
-            // Carregando configurações de diferentes fontes
-            _settings["DatabaseConnection"] = "Server=localhost;Database=MyApp;";
-            _settings["ApiKey"] = "abc123xyz789";
-            _settings["CacheServer"] = "redis://localhost:6379";
-            _settings["MaxRetries"] = "3";
-            _settings["TimeoutSeconds"] = "30";
-            _settings["EnableLogging"] = "true";
-            _settings["LogLevel"] = "Information";
-
-            _isLoaded = true;
-            Console.WriteLine("✅ Configurações carregadas com sucesso!\n");
-        }
-
-        public string GetSetting(string key)
-        {
-            if (!_isLoaded)
-                LoadConfigurations();
-
-            if (_settings.ContainsKey(key))
-                return _settings[key];
-
-            return null;
-        }
-
-        public void UpdateSetting(string key, string value)
-        {
-            _settings[key] = value;
-            Console.WriteLine($"Configuração atualizada: {key} = {value}");
-        }
-    }
-
     // Serviços da aplicação que precisam das configurações
     public class DatabaseService
     {
@@ -75,7 +20,7 @@ namespace DesignPatternChallenge
         public DatabaseService()
         {
             // Problema: Cada serviço cria sua própria instância
-            _config = new ConfigurationManager();
+            _config = ConfigurationManager.Instance;
         }
 
         public void Connect()
@@ -92,7 +37,7 @@ namespace DesignPatternChallenge
         public ApiService()
         {
             // Problema: Nova instância = novos carregamentos desnecessários
-            _config = new ConfigurationManager();
+            _config = ConfigurationManager.Instance;
         }
 
         public void MakeRequest()
@@ -109,7 +54,7 @@ namespace DesignPatternChallenge
         public CacheService()
         {
             // Problema: Mais uma instância duplicada
-            _config = new ConfigurationManager();
+            _config = ConfigurationManager.Instance;
         }
 
         public void Connect()
@@ -125,7 +70,7 @@ namespace DesignPatternChallenge
 
         public LoggingService()
         {
-            _config = new ConfigurationManager();
+            _config = ConfigurationManager.Instance;
         }
 
         public void Log(string message)
@@ -159,26 +104,8 @@ namespace DesignPatternChallenge
             // Problema 2: Configurações podem ficar inconsistentes
             Console.WriteLine("\n--- Tentativa de atualização ---\n");
             
-            var config1 = new ConfigurationManager();
-            config1.LoadConfigurations();
+            var config1 = ConfigurationManager.Instance;
             config1.UpdateSetting("LogLevel", "Debug");
-
-            var config2 = new ConfigurationManager();
-            config2.LoadConfigurations();
-            Console.WriteLine($"Config1 LogLevel: {config1.GetSetting("LogLevel")}");
-            Console.WriteLine($"Config2 LogLevel: {config2.GetSetting("LogLevel")}");
-            Console.WriteLine("⚠️ Inconsistência: Instâncias diferentes têm valores diferentes!");
-
-            // Problema 3: Desperdício de memória e processamento
-            Console.WriteLine("\n--- Impacto de Performance ---");
-            Console.WriteLine("Cada serviço carregou as configurações separadamente");
-            Console.WriteLine("Isso multiplica o uso de memória e tempo de inicialização");
-
-            // Perguntas para reflexão:
-            // - Como garantir que apenas uma instância de ConfigurationManager exista?
-            // - Como fazer todos os serviços compartilharem a mesma instância?
-            // - Como controlar o ponto de criação e acesso à instância única?
-            // - Como lidar com thread-safety em cenários multi-thread?
         }
     }
 }
